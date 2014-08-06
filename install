@@ -136,7 +136,7 @@ distro=""
     call_insert_point="^source_all pre-mount"
     grub_config="/boot/grub/grub.conf"
     grub="grub1"
-  elif [[ "$(cat /etc/redhat-release)" == *SL\ release\ 6* ]]; then
+  elif [[ "$(cat /etc/redhat-release)" == *Scientific\ Linux\ release\ 6* ]]; then
     distro="centos-6"
     initrd_path="bin sbin usr/bin usr/sbin"
     initrd="/boot/initramfs-$(uname -r).img"
