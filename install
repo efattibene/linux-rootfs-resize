@@ -123,7 +123,7 @@ partition-type
 # check distro and set distro specific variables
 distro=""
 
-# Centos6 derivate
+# RedHat derivate
 [ -f /etc/redhat-release ] &&
   if [[ "$(cat /etc/redhat-release)" == *CentOS\ release\ 6* ]]; then
     distro="centos-6"
@@ -136,10 +136,7 @@ distro=""
     call_insert_point="^source_all pre-mount"
     grub_config="/boot/grub/grub.conf"
     grub="grub1"
-  fi
-# SL6 derivate
-[ -f /etc/redhat-release ] &&
-  if [[ "$(cat /etc/redhat-release)" == *SL\ release\ 6* ]]; then
+  elif [[ "$(cat /etc/redhat-release)" == *SL\ release\ 6* ]]; then
     distro="centos-6"
     initrd_path="bin sbin usr/bin usr/sbin"
     initrd="/boot/initramfs-$(uname -r).img"
@@ -150,7 +147,8 @@ distro=""
     call_insert_point="^source_all pre-mount"
     grub_config="/boot/grub/grub.conf"
     grub="grub1"
-  fi  
+  fi
+  
 # Debian derivate
 [ -f /etc/issue ] &&
   if [[ "$(cat /etc/issue)" == *Debian\ GNU\/Linux\ 7* ]]; then
