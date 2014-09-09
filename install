@@ -137,7 +137,7 @@ distro=""
     grub_config="/boot/grub/grub.conf"
     grub="grub1"
   elif [[ "$(cat /etc/redhat-release)" == *Scientific\ Linux\ release\ 6* ]]; then
-    distro="centos-6"
+    distro="sl-6"
     initrd_path="bin sbin usr/bin usr/sbin"
     initrd="/boot/initramfs-$(uname -r).img"
     kernel="/boot/vmlinuz-$(uname -r)"
@@ -173,6 +173,17 @@ distro=""
     call_insert_point="^.*pre_mountroot$"
     grub_config="/boot/grub/grub.cfg"
     grub="grub2"
+  elif [[ "$(cat /etc/issue)" == *Ubuntu\ 13* ]]; then
+    distro="ubuntu-13"
+    initrd_path="bin sbin"
+    initrd="/boot/initrd.img-$(uname -r)"
+    kernel="/boot/vmlinuz-$(uname -r)"
+    init_script="scripts/local"
+    proc_insert_point="^mountroot()"
+    proc_name="\        growroot"
+    call_insert_point="^.*pre_mountroot$"
+    grub_config="/boot/grub/grub.cfg"
+    grub="grub2"  
   fi
 
 # exit if distro is not supported
