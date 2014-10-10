@@ -147,6 +147,17 @@ distro=""
     call_insert_point="^source_all pre-mount"
     grub_config="/boot/grub/grub.conf"
     grub="grub1"
+  elif [[ "$(cat /etc/redhat-release)" == *SL\ release\ 5* ]]; then
+    distro="sl-5"
+    initrd_path="bin sbin usr/bin usr/sbin"
+    initrd="/boot/initramfs-$(uname -r).img"
+    kernel="/boot/vmlinuz-$(uname -r)"
+    init_script="init"
+    proc_insert_point="^export PATH=.*"
+    proc_name="growroot"
+    call_insert_point="^source_all pre-mount"
+    grub_config="/boot/grub/grub.conf"
+    grub="grub1"  
   fi
   
 # Debian derivate
